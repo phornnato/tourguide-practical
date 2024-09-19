@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar</title>
+    <style>
+        .search-bar {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            flex-grow: 1; /* Ensure input takes the available space */
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 50px;
+            color: #333; /* Darker text color for visibility */
+        }
+
+        .search-bar .search-icon {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .logo {
+            margin-right: 10px;
+            height: 40px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-bar">
+        <img src="logo.png" alt="Tripadvisor Logo" class="logo">
+        <input type="text" id="searchInput" placeholder="Search">
+        <span class="search-icon" onclick="performSearch()">&#128269;</span>
+    </div>
+
+    <div>phorn is  the best in this hahaaajflajfljlj</div>
+    <script>
+        function performSearch() {
+            var query = document.getElementById('searchInput').value;
+            if (query) {
+                window.location.href = 'searchResults.html?q=' + encodeURIComponent(query);
+            }
+        }
+
+        // Trigger search on 'Enter' key press
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Background image styling */
+        .background-image {
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .slide {
+          background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 4s;
+            animation-name: fade;
+            animation-duration: 4s;
+            transition: all 5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        
+        .background-image .title {
+            position: absolute;
+            top: 80%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            font-size: 60px;
+            color: white;
+            font-family: "Rowdies", sans-serif;
+            font-weight: 700px;
+            font-style: normal;
+        }
+        .background-image .title p{
+            color: rgb(232, 222, 222);
+            text-shadow: 2px 5px 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Navigation bar */
+        .navbar {
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+          .navbar {
+                flex-direction:column;
+            
+                text-align: center;
+                
+             }
+    }
+    @media (max-width: 768px) {
+    .slider-container .main-image {
+        height: 200px;
+        padding: 10%;
+    }
+}
+@media (max-width: 768px) {
+    .container-map {
+        flex-direction: column;
+        
+    }
+}
+@media (max-width: 768px) {
+    .background-image .title {
+        font-size: 60px; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+}
+
+.logo{
+    width: 70px;
+    cursor: pointer;
+}
+.navbar a {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(113, 106, 106);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+
+  font-size: 25px;
+  border: none;
+  outline: none;
+  color: rgb(113, 106, 106);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(33, 115, 255, 0.905);
+  transition: 0.6s;
+  color:white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6e1e1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  transition: 0.6s;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #8d8d9386;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+        .title_p{
+          font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+
+        }
+        .footer_container{
+            background-color: rgba(0, 0, 0, 0.042);
+            color: rgb(0, 0, 0);
+            height: 300px;
+        }
+        .container_footer {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline:15%;
+            
+}
+.about-us-line1 h3, .Natural-line1 h3 {
+    color: rgb(5, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+.about-us-line1 a, .Natural-line1 a {
+    display: block;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.about-us-line1 a:hover, .Natural-line1 a:hover {
+    color: #d900007d; 
+
+}
+@media (max-width: 768px) {
+    .container_footer {
+        flex-direction: column;
+        padding-inline: 20px; 
+        text-align: center;
+    }
+}
+.Natural-line1 .p_support, .icon-support  {
+    max-width: 200px;
+    margin-bottom: 15px;
+    padding: 8px;
+    color: rgb(6, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+.p-footer{
+    max-width: 220px;
+    margin-left: 10px;
+}
+.footer_container {
+    background-color: rgba(0, 0, 0, 0.042);
+    color: rgb(0, 0, 0);
+    height: 300px;
+    position: relative;
+}
+
+.icon_information {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: absolute;
+    
+    bottom: 2px; 
+    left: 0;
+    right: 0;
+    opacity: 1; 
+    visibility: visible;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255); 
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.795);
+}
+
+/* for main content  */
+
+.main_container{
+    padding: 15px 10%;
+}
+.main_p{
+          font-size: 18px;
+          line-height: 1.6;
+          color: #666;
+        }
+.block-contact{
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    /* background-color: #666; */
+}
+.contactImg{
+    width: 50%;
+    height: 100%;
+    /* background-color: aqua; */
+    float: left;
+}
+.contactImg img{
+    width: 100%;
+    /* height: 100%; */
+    object-fit: cover;
+}
+.contactForm{
+    width: 50%;
+    height: 100px;
+    /* background-color: bisque; */
+    float: left;
+}
+.titleContact{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 700;
+    color: #3580ff;
+}
+.blockForm{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* background-color: #3580ff; */
+}
+.formInput{
+    width: 80%;
+    /* background-color: #333; */
+    height: 100px;
+    margin: auto;
+}
+input{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: 2px solid #69a0ff;
+    border-radius: 5px;
+    font-size: 17px;
+    padding-left: 15px;
+}
+input:focus{
+    border: 2px solid #3580ff;
+}
+textarea{
+    width: 100%;
+    height: 100px;
+    border: 2px solid #69a0ff;
+    outline: none;
+    border-radius: 5px;
+    font-size: 17px;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+textarea:focus{
+    border: 2px solid #3580ff;
+
+}
+.btnSend{
+    padding: 12px 12px;
+    background-color: #69a0ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    left: 11rem;
+    top: 1.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btnSend:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+    background-color: #3580ff;
+}
+.btnSend:active{
+    rotate: 3deg;
+}
+/* for map  */
+.container-map{
+    display: flex;
+    gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.map {
+    width: 800px;
+    height: 400px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.coordinates, .distances {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.coordinates h3, .distances h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.coordinates .p-map, .distances .p-map {
+    margin: 5px 0;
+    font-size: 20px;
+}
+.title{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Background image with title -->
+  
+    <div class="background-image">
+         <!-- fill in the blank  -->
+        <div class="slide fade" style="background-image: url('https://bonfiretraining.com/wp-content/uploads/2019/08/customer-service-phone-training.png');"></div>
+        <div class="slide fade" style="background-image: url('https://res.cloudinary.com/clearlink/image/upload/f_auto,q_auto/w_1280,h_640/v1684447420/Centurylink/centurylinkquote/customer%20service/friendly-rep-mobile_aeo4ro.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://wallpapers.com/images/hd/employees-contact-us-ub4rjdoligkldnld.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://thumbs.dreamstime.com/z/contact-us-customer-support-hotline-people-connect-call-customer-support-contact-us-customer-support-hotline-people-connect-call-127083638.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://st.depositphotos.com/1000423/1637/i/450/depositphotos_16370285-stock-photo-hand-pushing-on-a-touch.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://media.istockphoto.com/id/874811644/photo/the-successful-stay-consistent.jpg?s=612x612&w=0&k=20&c=sTO-KwCPH1mF35U6TibNvqgJcN6wGRuByXCjhHYhRE0=');"></div>
+        <div class="title">Contact Us Information 
+            <p class="title_p">We feel free for Asking and Suggestion </p>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- logo  -->
+
+        <img src="logo.png" class="logo" alt="logo"/>
+        <a href="index.html" >Home</a>
+         <!-- recommendations place  -->
+          <a href="Recomm.html"> Recommendations Places</a>
+
+        <!-- for services  -->
+
+        <div class="dropdown">
+          <div class="dropbtn" >Services</div>
+          <div class="dropdown-content">
+            <a href="guide.html">Guide</a>
+           <a href="guesthouse.html"> Gesthouse</a>
+           <a href="transportation.html"> Transportations</a>
+           <a href="food.html"> Foods</a>
+          </div>
+        </div>
+        <!-- for about and contact  -->
+        <a href="contact.html" style=" background-color: rgba(33, 115, 255, 0.905); color: white;">Contact</a>
+        <a href="AboutUs.html">About Us</a>
+      </div>
+    
+    
+    <!-- code main content here -->
+
+
+<!--Start Section contact-->
+
+<section class="block-contact">
+    <div class="contactImg">
+        <img src="contact.jpg" alt="">
+    </div>
+    <div class="contactForm">
+        <h1 class="titleContact">Contact Us</h1>
+        <div class="blockForm">
+            <!-- <input type="text" placeholder="Username" required><br> -->
+             <div class="formInput">
+                <form>
+                    <input type="text" placeholder="Username" required><br>
+                    <input type="email" placeholder="Email" required><br>
+                    <textarea placeholder="Message"></textarea>
+                    <button type="submit" class="btnSend">Send Message</button>
+                </form>
+             </div>
+        </div>
+    </div>
+</section>
+<br><br>
+<h1 class="title">Get User Location</h1>
+<div class="main_container">
+       
+
+<div class="container-map">
+    <div id="map" class="map"></div>
+        <div class="info">
+            <div class="coordinates">
+                <h3>Coordinates</h3>
+                <p class="p-map">11.54767437698422, 104.91685396658457</p>
+            </div>
+            <div class="distances">
+                <h3>Distances</h3>
+                <p class="p-map">Phnom Pehn   : 190km</p>
+                <p class="p-map">Siem Reap    : 160km</p>
+                <p class="p-map">Sihanoukville: 110km</p>
+                <p class="p-map">Kampot city  : 36km</p>
+                <p class="p-map">Kep  : 58km</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- for footer   -->
+
+     <footer class="footer_container">
+        <div class="container_footer">
+            <div class="about-us-line1">
+                <h3>Team info</h3>
+                <p class="p-footer">We are from group project. We are here for sharing knowledge about cambodia to all over the world as you can see.   
+                        We made up this group in order to spread the world what we have. <span style="color: hsl(231, 100%, 50%); cursor: pointer;">We have the same destination </span>
+                </p>
+            
+            </div>
+            <div class="Natural-line1">
+                <h3>Pages</h3>
+                <p class="p-footer">
+                    We extend a warm invitation to all visitors from around the world. Our mission is to provide you with comprehensive information, tips, and guides to make your journey through Cambodia unforgettable.
+
+
+                </p>
+                
+            </div>
+  
+            <div class="Natural-line1">
+                <h3>Destination</h3>
+                <p class="p-footer">This website was designed and developed by [Your Name/Company], dedicated to providing an immersive and informative experience for travelers exploring the beauty of Cambodia. For inquiries or more information.</p>
+            </div>
+
+
+          <div class="Natural-line1">
+              <h3>Support Us</h3>
+              <p class="p_support">you can suport us, actually we are approval the Ad on our website. if you are interest us please join us  <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
+              <p style="margin-left: 10px;"> <i class="fa fa-phone" aria-hidden="true"></i>  +855 : 0974303668</p>
+              <p style="margin-left: 10px;"> <i class="fa fa-telegram" aria-hidden="true"></i>  @T-Team</p>
+          </div>
+      </div>
+
+      <div class="icon_information">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100088314306741&mibextid=ZbWKwL" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="mailto:natophorn@gmail.com" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/BXWEzjGr" ><i class="fa fa-podcast" aria-hidden="true"></i></i></a>
+        </div>
+       
+    </div>
+
+  </footer>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    let slideIndex = 0;
+ showSlides();
+ 
+ function showSlides() {
+     let i;
+     let slides = document.getElementsByClassName("fade");
+     for (i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";  
+     }
+     slideIndex++;
+     if (slideIndex > slides.length) {slideIndex = 1}    
+     slides[slideIndex-1].style.display = "block";  
+     setTimeout(showSlides, 5000); 
+ }
+
+ var map = L.map('map').setView([11.54767437698422, 104.91685396658457], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'About our G3 Team'
+}).addTo(map);
+var marker = L.marker([11.54767437698422, 104.91685396658457]).addTo(map);
+marker.bindPopup("<b>Beltei International University  </b><br>Welcome to BIU").openPopup();
+
+
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations Guest House</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   
+    <!-- link to boostrap  -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+   <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Background image styling */
+        .background-image {
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .slide {
+          background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 4s;
+            animation-name: fade;
+            animation-duration: 4s;
+            transition: all 5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        
+        .background-image .title {
+            position: absolute;
+            top: 80%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            font-size: 60px;
+            color: white;
+            font-family: "Rowdies", sans-serif;
+            font-weight: 700px;
+            font-style: normal;
+        }
+        .background-image .title p{
+            color: rgb(232, 222, 222);
+            text-shadow: 2px 5px 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Navigation bar */
+        .navbar {
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+          .navbar {
+                flex-direction:column;
+            
+                text-align: center;
+                
+             }
+    }
+    @media (max-width: 768px) {
+    .slider-container .main-image {
+        height: 200px;
+    }
+}
+@media (max-width: 768px) {
+    .container-map {
+        flex-direction: column;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .background-image .title {
+        font-size: 60px; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+}
+
+.logo{
+    width: 70px;
+    cursor: pointer;
+}
+.navbar a {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(113, 106, 106);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+
+  font-size: 25px;
+  border: none;
+  outline: none;
+  color: rgb(113, 106, 106);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(33, 115, 255, 0.905);
+  transition: 0.6s;
+  color:white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6e1e1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  transition: 0.6s;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #8d8d9386;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+        .title_p{
+          font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+
+        }
+        .footer_container{
+            background-color: rgba(0, 0, 0, 0.042);
+            color: rgb(0, 0, 0);
+            height: 300px;
+        }
+        .container_footer {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline:15%;
+            
+}
+.about-us-line1 h3, .Natural-line1 h3 {
+    color: rgb(5, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+.about-us-line1 a, .Natural-line1 a {
+    display: block;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.about-us-line1 a:hover, .Natural-line1 a:hover {
+    color: #d900007d; 
+
+}
+@media (max-width: 768px) {
+    .container_footer {
+        flex-direction: column;
+        padding-inline: 20px; 
+        text-align: center;
+    }
+}
+.Natural-line1 .p_support, .icon-support  {
+    max-width: 200px;
+    margin-bottom: 15px;
+    padding: 8px;
+    color: rgb(6, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+.p-footer{
+    max-width: 220px;
+    margin-left: 10px;
+}
+.footer_container {
+    background-color: rgba(0, 0, 0, 0.042);
+    color: rgb(0, 0, 0);
+    height: 300px;
+    position: relative;
+}
+
+.icon_information {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: absolute;
+    
+    bottom: 2px; 
+    left: 0;
+    right: 0;
+    opacity: 1; 
+    visibility: visible;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255); 
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.795);
+}
+
+/* for main content  */
+
+.main_container{
+    padding: 15px 10%;
+}
+.main_p{
+          font-size: 18px;
+          line-height: 1.6;
+          color: #666;
+        }
+
+/* for popup */
+.hover-link {
+            text-decoration: none;
+            color: blue;
+            position: relative;
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .popup img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .popup.active {
+            display: block;
+        }
+        .b-container{
+            top: 35%;
+            left: 25%;
+            text-shadow: 2px 2px 5px rgb(0, 0, 0);
+            font-size: 30px;
+            color: rgb(244, 240, 240);
+            font-family: "Rowdies", serif;
+            font-weight: 400px;
+            text-align: center;
+        }
+        .b-image {
+            height:80vh; 
+            width: 80%;
+            position: relative;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.539);
+            border-radius: 100px;
+        }
+        .p-bo{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+            text-shadow: none;
+            color: darkblue;
+        
+        }
+ 
+    </style>
+</head>
+<body>
+
+    <!-- Background image with title -->
+  
+    <div class="background-image">
+         <!-- fill in the blank  -->
+        <div class="slide fade" style="background-image: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/102811674.jpg?k=bf25e05a1e64c4c69c414345bd0cbb6d75ae975e6347d5994a96cfa2588f512b&o=&hp=1');"></div>
+        <div class="slide fade" style="background-image: url('https://content.r9cdn.net/rimg/dimg/0e/ff/1dd852dd-city-54512-167a472a8a9.jpg?width=1200&height=630&crop=true');"></div>
+        <div class="slide fade" style="background-image: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/109034027.jpg?k=e12c30a93dfd861e079dff6a80029ab6a8053eb6461c87e864304201c2b221d8&o=&hp=1');"></div>
+        <div class="slide fade" style="background-image: url('https://golden-sand-hotel-sihanoukville.booked.net/data/Photos/OriginalPhoto/9149/914951/914951596/Golden-Sand-Hotel-Sihanoukville-Exterior.JPEG');"></div>
+        <div class="slide fade" style="background-image: url('https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/dWx0q25aRnhoMbWE/img_2882-A0xoXaVrkJsLqQ96.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://images.luxuryescapes.com/q_auto:good/81isx8d4pnvxgxj98l08');"></div>
+        <div class="title">Best Guest House and Resort in Cambodia 
+            <p class="title_p">Looking In our show which one that you Interest with You can choose and contact with our sevice. </p>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- logo  -->
+
+        <img src="logo.png" class="logo" alt="logo"/>
+        <a href="index.html" >Home</a>
+         <!-- recommendations place  -->
+          <a href="Recomm.html"> Recommendations Places</a>
+
+        <!-- for services  -->
+
+        <div class="dropdown">
+          <div class="dropbtn" style=" background-color: rgba(33, 115, 255, 0.905); color: white;">Services</div>
+          <div class="dropdown-content">
+            <a href="" style="background-color: #8d8d9386; color: white;">Guide</a>
+           <a href="guesthouse.html"> Gesthouse</a>
+           <a href="transportation.html"> Transportations</a>
+           <a href="food.html"> Foods</a>
+          
+          </div>
+        </div>
+        <!-- for about and contact  -->
+        <a href="contact.html">Contact</a>
+        <a href="AboutUs.html">About Us</a>
+      </div>
+      <!--guest house-->
+       <div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Guest House in Simriep Province</h3>
+                <img class="b-image" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/102811674.jpg?k=bf25e05a1e64c4c69c414345bd0cbb6d75ae975e6347d5994a96cfa2588f512b&o=&hp=1"alt="World Heritage glaciers">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 76%, 26%, 0.856); cursor: pointer; text-shadow: #333;"><a href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcf.bstatic.com%2Fxdata%2Fimages%2Fhotel%2Fmax1024x768%2F102811674.jpg%3Fk%3Dbf25e05a1e64c4c69c414345bd0cbb6d75ae975e6347d5994a96cfa2588f512b%26o%3D%26hp%3D1&tbnid=Nwrvf7YNZoAJ-M&vet=1&imgrefurl=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fkh%2Fsmiley-s-guest-house.html&docid=7AAC6L9zB71XJM&w=1024&h=768&source=sh%2Fx%2Fim%2Fm1%2F1&kgs=412c3fe1c0003d7b&shem=abme%2Ctrie" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+       </div><div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Guest House in Kampot Province</h3>
+                <img class="b-image" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/ed/3f/1e/kampot-sweet-boutique.jpg?w=1200&h=-1&s=1">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/uYQ8dw9GacMGmM4V7" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+       </div><div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Guest House in Preh Sihaknouk Province</h3>
+                <img class="b-image" src="https://content.r9cdn.net/rimg/dimg/0e/ff/1dd852dd-city-54512-167a472a8a9.jpg?crop=true&width=1366&height=768&xhint=1915&yhint=1627">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/4MXAZn3GzBgkAeK27" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+       </div><div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Guest House in Koh Kong Province</h3>
+                <img class="b-image" src="https://cdn-img.readytotrip.com/t/1024x768/content/76/29/76299c4b0ee3bbce609ed4d3d701d953a2fe90c6.jpeg">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/rpqTF62hQ4zU2n536" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+       </div><div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Hotel In Phnom Penh </h3>
+                <img class="b-image" src="https://www.rafflesphnompenh.com/wp-content/uploads/sites/232/2021/06/Raffles-Hotel-Le-Royal-Morning-Facade-Shot-2021-2100x1100.jpg">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/m5dGySv3FJBe33w56" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+       </div><div class="container">
+        <div class="b-container">
+            <div class="about-pla1"></div>
+                <h3>Guest House in Kep </h3>
+                <img class="b-image" src="https://images.trvl-media.com/hotels/35000000/34880000/34872400/34872305/306a9a98_z.jpg">
+                <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+                available around the clock to assist with any 
+                inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+                make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/V2wpsG8e7iupDzMy8" >
+                 Contact Us To get Information</a></span>
+        </div>
+        <br>
+    </div><div class="container">
+     <div class="b-container">
+         <div class="about-pla1"></div>
+             <h3>Guest House in mondulkiri Province</h3>
+             <img class="b-image" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/505948172.jpg?k=e9c769ac2d85dcb48e88ff616a8c5420c50cce121a607cff17532951629b3a64&o=&hp=1">
+             <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+             available around the clock to assist with any 
+             inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+             make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/iRA9fXqveU81KqBe6" >
+              Contact Us To get Information</a></span>
+     </div>
+     <br>
+    </div><div class="container">
+     <div class="b-container">
+         <div class="about-pla1"></div>
+             <h3>Guest House in Preh Vihear Province </h3>
+             <img class="b-image" src="https://lh3.googleusercontent.com/pw/AP1GczMnm57bUI1gpESL1mBBrRICAL6PDxWfYc6XTivoucbsWS9HPY8F-2jhN0sCr4bf59tNTZsvG3ccNHjFARVZlxmF170s14rktnOOfbm9XRmOuGfubFCc=w1200">
+             <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+             available around the clock to assist with any 
+             inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+             make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/7HaoEwTmixAaBTHLA" >
+              Contact Us To get Information</a></span>
+     </div>
+     <br>
+    </div><div class="container">
+     <div class="b-container">
+         <div class="about-pla1"></div>
+             <h3>Resort in Kompong spue Province </h3>
+             <img class="b-image" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/500955445.jpg?k=6aa85c293bec5815960da4e61861601f3a4e6e2acf4fba1b9f2bfdbe4d187a00&o=&hp=1">
+             <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+             available around the clock to assist with any 
+             inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+             make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/FHG5ohr2VGb8t4Xq5" >
+              Contact Us To get Information</a></span>
+     </div>
+     <br>
+    </div><div class="container">
+     <div class="b-container">
+         <div class="about-pla1"></div>
+             <h3>Guest House in Kompong Cham Province </h3>
+             <img class="b-image" src="https://www.passionindochinatravel.com/uploads/attraction-Where%20to%20stay%20in%20Kampong%20Chhnang%20Hotel%202.jpg">
+             <p class="p-bo">At our guest house, we are committed to providing top-notch support to ensure that your stay is comfortable and enjoyable. Our dedicated team is 
+             available around the clock to assist with any 
+             inquiries, from booking details to local recommendations. Whether you need help with room amenities, directions, or special requests, we are here to 
+             make your experience as smooth as possible. Your comfort is our priority, and we're always just a call or message away. <span style="color: hsla(231, 80%, 25%, 0.902); cursor: pointer; text-shadow: #333;"><a href="https://images.app.goo.gl/Ge9mYLX6r77mCJ2L8" >
+              Contact Us To get Information</a></span>
+     </div>
+
+    <!-- for footer   -->
+     <footer class="footer_container">
+        <div class="container_footer">
+            <div class="about-us-line1">
+                <h3>Team info</h3>
+                <p class="p-footer">We are from group project. We are here for sharing knowledge about cambodia to all over the world as you can see.   
+                        We made up this group in order to spread the world what we have. <span style="color: hsl(231, 100%, 50%); cursor: pointer;"><link rel="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcf.bstatic.com%2Fxdata%2Fimages%2Fhotel%2Fmax1024x768%2F102811674.jpg%3Fk%3Dbf25e05a1e64c4c69c414345bd0cbb6d75ae975e6347d5994a96cfa2588f512b%26o%3D%26hp%3D1&tbnid=Nwrvf7YNZoAJ-M&vet=1&imgrefurl=https%3A%2F%2Fwww.booking.com%2Fhotel%2Fkh%2Fsmiley-s-guest-house.html&docid=7AAC6L9zB71XJM&w=1024&h=768&source=sh%2Fx%2Fim%2Fm1%2F1&kgs=412c3fe1c0003d7b&shem=abme%2Ctrie">We have the same destination </span>
+                </p>
+            
+            </div>
+            <div class="Natural-line1">
+                <h3>Pages</h3>
+                <p class="p-footer">
+                    We extend a warm invitation to all visitors from around the world. Our mission is to provide you with comprehensive information, tips, and guides to make your journey through Cambodia unforgettable.
+                </p>
+                
+            </div>
+  
+            <div class="Natural-line1">
+                <h3>Destination</h3>
+                <p class="p-footer">This website was designed and developed by [Your Name/Company], dedicated to providing an immersive and informative experience for travelers exploring the beauty of Cambodia. For inquiries or more information.</p>
+            </div>
+
+
+          <div class="Natural-line1">
+              <h3>Support Us</h3>
+              <p class="p_support">you can suport us, actually we are approval the Ad on our website. if you are interest us please join us  <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
+              <p style="margin-left: 10px;"> <i class="fa fa-phone" aria-hidden="true"></i>  +855 : 0974303668</p>
+              <p style="margin-left: 10px;"> <i class="fa fa-telegram" aria-hidden="true"></i>  @T-Team</p>
+          </div>
+      </div>
+
+      <div class="icon_information">
+        <div class="social-icons">
+            <a href="https://images.app.goo.gl/7hYMq3vBsZC7X5wdA" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="mailto:natophorn@gmail.com" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/BXWEzjGr" ><i class="fa fa-podcast" aria-hidden="true"></i></i></a>
+        </div>
+       
+    </div>
+
+  </footer>
+  
+  <script>
+    let slideIndex = 0;
+ showSlides();
+ 
+ function showSlides() {
+     let i;
+     let slides = document.getElementsByClassName("fade");
+     for (i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";  
+     }
+     slideIndex++;
+     if (slideIndex > slides.length) {slideIndex = 1}    
+     slides[slideIndex-1].style.display = "block";  
+     setTimeout(showSlides, 5000); 
+     
+ }
+ 
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportations Cambodia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Background image styling */
+        .background-image {
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .slide {
+          background-size: cover;
+            background-attachment: fixed; 
+            background-position: center;
+            height:100vh; 
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 4s;
+            animation-name: fade;
+            animation-duration: 4s;
+            transition: all 5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .7}
+            to {opacity: 1}
+        }
+
+        
+        .background-image .title {
+            position: absolute;
+            top: 80%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            font-size: 60px;
+            color: white;
+            font-family: "Rowdies", sans-serif;
+            font-weight: 700px;
+            font-style: normal;
+        }
+        .background-image .title p{
+            color: rgb(232, 222, 222);
+            text-shadow: 2px 5px 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Navigation bar */
+        .navbar {
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+          .navbar {
+                flex-direction:column;
+            
+                text-align: center;
+                
+             }
+    }
+    @media (max-width: 768px) {
+    .slider-container .main-image {
+        height: 200px;
+    }
+}
+@media (max-width: 768px) {
+    .container-map {
+        flex-direction: column;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .background-image .title {
+        font-size: 60px; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+}
+
+.logo{
+    width: 70px;
+    cursor: pointer;
+}
+.navbar a {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(113, 106, 106);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+
+  font-size: 25px;
+  border: none;
+  outline: none;
+  color: rgb(113, 106, 106);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(33, 115, 255, 0.905);
+  transition: 0.6s;
+  color:white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6e1e1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  transition: 0.6s;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #8d8d9386;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+        .title_p{
+          font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+
+        }
+        .footer_container{
+            background-color: rgba(0, 0, 0, 0.042);
+            color: rgb(0, 0, 0);
+            height: 300px;
+        }
+        .container_footer {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline:15%;
+            
+}
+.about-us-line1 h3, .Natural-line1 h3 {
+    color: rgb(5, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+.about-us-line1 a, .Natural-line1 a {
+    display: block;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.about-us-line1 a:hover, .Natural-line1 a:hover {
+    color: #d900007d; 
+
+}
+@media (max-width: 768px) {
+    .container_footer {
+        flex-direction: column;
+        padding-inline: 20px; 
+        text-align: center;
+    }
+}
+.Natural-line1 .p_support, .icon-support  {
+    max-width: 200px;
+    margin-bottom: 15px;
+    padding: 8px;
+    color: rgb(6, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+.p-footer{
+    max-width: 220px;
+    margin-left: 10px;
+}
+.footer_container {
+    background-color: rgba(0, 0, 0, 0.042);
+    color: rgb(0, 0, 0);
+    height: 300px;
+    position: relative;
+}
+
+.icon_information {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: absolute;
+    
+    bottom: 2px; 
+    left: 0;
+    right: 0;
+    opacity: 1; 
+    visibility: visible;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255); 
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.795);
+}
+
+/* for main content  */
+
+.main_container{
+    
+    padding: 15px 10%;
+}
+.main_p{
+          font-size: 18px;
+          line-height: 1.6;
+          color: #666;
+        }
+.main-point{
+    color: rgb(53, 8, 255);
+}
+
+.transport-img {
+    max-width: 50%; 
+}
+.transport-img img {
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Background image with title -->
+  
+    <div class="background-image">
+         <!-- fill in the blank  -->
+        <div class="slide fade" style="background-image: url('https://i2.wp.com/www.missfilatelista.com/wp-content/uploads/2019/05/Lady-Tuk-Tuk-Driver.jpg?resize=1024%2C683&ssl=1');"></div>
+        <div class="slide fade" style="background-image: url('https://www.passapptaxis.com/img/home_slide.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://phnompenh.gov.kh/wp-content/uploads/2019/11/64838882_1198721623641921_5948811742577426432_o-1.jpg');"></div>
+        <div class="slide fade" style="background-image: url('https://media.licdn.com/dms/image/v2/C5612AQGHOFeOuB0vnQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1646536639130?e=2147483647&v=beta&t=iX48QVTILJ0MFOkDR7Rnci6qEkTOQK3kHREJr9Z47Gc');"></div>
+        <div class="title">Transportations Cambodia
+            <p class="title_p">We have a lot of  strange Transportations. You should try. </p>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- logo  -->
+
+        <img src="logo.png" class="logo" alt="logo"/>
+        <a href="index.html" >Home</a>
+         <!-- recommendations place  -->
+          <a href="Recomm.html" > Recommendations Places</a>
+
+        <!-- for services  -->
+
+        <div class="dropdown">
+          <div class="dropbtn" style=" background-color: rgba(33, 115, 255, 0.905); color: white;" >Services</div>
+          <div class="dropdown-content">
+            <a href="guide.html">Guide</a>
+           <a href="guesthouse.html" > Gesthouse</a>
+           <a href="transportation.html" style="background-color: #8d8d9386; color: white;"> Transportations</a>
+           <a href="food.html"> Foods</a>
+          </div>
+        </div>
+        <!-- for about and contact  -->
+        <a href="contact.html">Contact</a>
+        <a href="AboutUs.html">About Us</a>
+      </div>
+    
+    
+    <!-- code main content here -->
+
+<div class="main_container">
+        <p class="frame">Many Cambodian people rely on various transportation methods as their primary source of income, especially with the high volume of tourists visiting the country. In this guide, we will break down the different types of transportation available in Cambodia, providing detailed information about each one. Our aim is to help you choose the best transportation option for your needs and ensure you have an enjoyable experience exploring the beautiful and diverse regions of Cambodia.</p>
+        <p class="main-point">1. Tuk-Tuks:</p>
+        <p class="transport">These are a popular and iconic mode of transportation in Cambodia, especially in cities like Phnom Penh and Siem Reap. They are convenient for short distances and offer a unique, open-air experience. They can be hired for single trips or for day-long tours.</p>
+        <img class="transport-img" src="https://cdn.i-scmp.com/sites/default/files/images/methode/2017/06/23/8902535c-4f55-11e7-b896-7f2d3a4d650b_1280x720_195428.JPG" alt="">
+        <img class="transport-img" src="https://thebettercambodia.com/wp-content/uploads/2022/07/tuk-tuk-cambodian-culture-tour-of-siem-reap.5dc1776134bd1.jpg.webp" alt=""><br>
+        <h4 class="transport">What is a Tuk-Tuk?</h4>
+        <p class="transport">
+            <strong>Description:</strong> A tuk-tuk is a three-wheeled vehicle with a seating area for passengers, usually open-air, providing a breezy ride.<br>
+            <strong>Types:</strong> While traditional tuk-tuks are pulled by motorcycles, many modern versions are motorcycle-based with an attached cabin.
+        </p>
+        <h4 class="transport">Benefits of Using Tuk-Tuks</h4>
+        <p class="transport">
+            <strong>Convenience:</strong> Ideal for short distances, making them perfect for exploring city attractions, restaurants, and markets.<br>
+            <strong>Local Experience:</strong> Offers a unique way to see the city while enjoying the sights and sounds.<br>
+            <strong>Affordability:</strong> Generally inexpensive, making them a budget-friendly transport option.
+        </p>
+        <h4 class="transport">Hiring a Tuk-Tuk</h4>
+        <p class="transport">
+            <strong>Single Trips:</strong> You can hire a tuk-tuk for a single ride; just negotiate the fare beforehand.<br>
+            <strong>Day Tours:</strong> Many drivers offer full-day services, which can be more economical and allow for personalized itineraries. It’s a great way to visit multiple attractions.
+        </p>
+        <h4 class="transport">Tips for Tuk-Tuk Rides</h4>
+        <p class="transport">
+            <strong>Negotiate Fares:</strong> Always agree on a price before starting your trip. Prices can vary based on distance and time.<br>
+            <strong>Know Your Route:</strong> Familiarize yourself with your destination or have it marked on a map to ensure the driver understands where to take you.<br>
+            <strong>Safety:</strong> While tuk-tuks are generally safe, always wear a seatbelt if available and ensure the driver has a valid license.
+        </p>
+        <h4 class="transport">Popular Routes</h4>
+        <p class="transport">
+            <strong>Phnom Penh:</strong> Royal Palace, Wat Phnom, Central Market.<br>
+            <strong>Siem Reap:</strong> Angkor Wat, Tonle Sap Lake, local markets.
+        </p>
+        <h4 class="transport">Environmental Considerations</h4>
+        <p class="transport">Tuk-tuks are more eco-friendly compared to cars, making them a better choice for environmentally conscious travelers.</p>    
+        <p class="main-point">2. Motorbikes and Scooter Rentals:</p>
+        <p class="transport">Many tourists rent motorbikes or scooters to explore cities and rural areas independently. This provides flexibility and a sense of adventure but requires careful navigation due to traffic conditions.</p>
+        <img class="transport-img" src="https://i.funbooky.com/travel/activity/medium/s7jjnb7jjxo4rdgtwx8n.webp" alt=""><br>
+        <p class="transport">Renting a motorbike or scooter is a popular and adventurous way to explore Cambodia, offering freedom and flexibility. Here’s a comprehensive guide:</p>
+        <h4 class="transport">Benefits of Renting a Motorbike or Scooter</h4>
+        <p class="transport">
+            <strong>Freedom to Explore:</strong> Easily navigate through cities and rural areas at your own pace.<br>
+            <strong>Cost-Effective:</strong> Generally cheaper than hiring a car or taking multiple tuk-tuks for longer distances.<br>
+            <strong>Local Experience:</strong> Allows you to immerse yourself in the culture and scenery.
+        </p>
+        <h4 class="transport">Rental Options</h4>
+        <p class="transport">
+            <strong>Rental Shops:</strong> Widely available in tourist areas, particularly in Phnom Penh and Siem Reap. Look for reputable shops with good reviews.<br>
+            <strong>Hotel Rentals:</strong> Many hotels and guesthouses offer motorbike rentals, often with the convenience of pick-up and drop-off.
+        </p>
+        <h4 class="transport">Requirements</h4>
+        <p class="transport">
+            <strong>License:</strong> An international driving permit (IDP) is usually required. Check local regulations and carry a copy.<br>
+            <strong>Deposit:</strong> Most rental shops will require a deposit, either in cash or by holding your passport.
+        </p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">
+            <strong>Daily Rates:</strong> Typically range from $5 to $10 per day, depending on the type and condition of the bike.<br>
+            <strong>Fuel:</strong> Gasoline is inexpensive in Cambodia, with prices around $1 per liter.
+        </p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Wear a Helmet:</strong> It's mandatory, and wearing one significantly reduces the risk of injury.<br>
+            <strong>Insurance:</strong> Consider getting travel insurance that covers motorbike accidents.<br>
+            <strong>Road Conditions:</strong> Be cautious, as road conditions can vary. Watch out for potholes, livestock, and pedestrians.<br>
+            <strong>Traffic:</strong> Be aware of local driving habits, as traffic can be chaotic.
+        </p>
+        <h4 class="transport">Siem Reap</h4>
+        <p class="transport">Ride to Angkor Wat and nearby temples, exploring less-touristed areas.</p>
+        <h4 class="transport">Phnom Penh</h4>
+        <p class="transport">Visit sites like the Royal Palace and Tuol Sleng Genocide Museum.</p>
+        <h4 class="transport">Coastal Areas</h4>
+        <p class="transport">Consider riding to Sihanoukville or Kampot for beautiful coastal views and relaxed vibes.</p>
+        <h4 class="transport">Inspect the Bike</h4>
+        <p class="transport">Before returning, check for any damages to avoid disputes over deposits.</p>
+        <h4 class="transport">Fuel Policy</h4>
+        <p class="transport">Some rentals require you to return the bike with a full tank, so plan accordingly.</p>
+        <p class="main-point">3. Cycling:</p>
+        <p class="transport">In certain areas, like around Angkor Wat in Siem Reap, renting bicycles is a popular and eco-friendly way to explore.</p>
+        <img class="transport-img" src="https://www.areacambodia.com/wp-content/uploads/2023/09/Exploring-the-Temples-of-Angkor-on-Wheels-A-Guide-to-Finding-Motorbikes-and-Bicycles-for-Rent-in-Krong-Siem-Reap.jpg" alt="">
+        <h4 class="transport">Benefits of Cycling</h4>
+        <p class="transport">Cycling allows you to explore the beautiful landscapes, immerse yourself in local culture, and discover hidden gems.</p>
+        <h4 class="transport">Popular Cycling Routes</h4>
+        <p class="transport"> 
+            <strong>Siem Reap:</strong> Ride around Angkor Wat and the surrounding countryside.<br>
+            <strong>Phnom Penh:</strong> Explore the riverside and historical sites like Wat Phnom.<br>
+            <strong>Kampot:</strong> Enjoy scenic rides along the rivers and visit nearby pepper plantations.
+        </p>
+        <h4 class="transport">Where to Rent Bicycles</h4>
+        <p class="transport">Many local shops and hotels offer bicycle rentals. Look for places with good reviews for quality bikes and service.</p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Wear a Helmet:</strong> Always wear a helmet for safety.<br>
+            <strong>Stay Hydrated:</strong> Bring water, especially during hot weather.<br>
+            <strong>Follow Traffic Rules:</strong> Be mindful of local traffic, and ride defensively.
+        </p>
+        <p class="main-point">4. Private Cars and Vans:</p>
+        <p class="transport">For a more comfortable and private experience, especially for groups, hiring a private car or van with a driver is a common choice. This can be arranged through tour operators or hotels.</p>
+        <img class="transport-img" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/3d/53/05/have-lot-of-types-of.jpg?w=1200&h=-1&s=1" alt="">
+        <h4 class="transport">Benefits of Using Private Cars and Vans</h4>
+        <p class="transport">Private cars and vans provide comfort, privacy, and the convenience of door-to-door service, making them ideal for families or groups.</p>
+        <h4 class="transport">Rental Options</h4>
+        <p class="transport">
+            <strong>Car Rentals:</strong> Available from various companies, including international and local brands. Make sure to check for insurance options.<br>
+            <strong>Vans for Groups:</strong> Perfect for larger groups or family trips, often including a driver for convenience.
+        </p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">Prices vary based on vehicle type and rental duration, typically ranging from $30 to $100 per day. Additional costs may include fuel and insurance.</p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Check Vehicle Condition:</strong> Inspect the car or van before taking it on the road.<br>
+            <strong>Hire a Driver:</strong> If you're unfamiliar with local driving conditions, hiring a driver can enhance safety and ease.
+        </p>
+        <h4 class="transport">Popular Routes for Private Vehicles</h4>
+        <p class="transport">
+            <strong>Siem Reap to Angkor Wat:</strong> Easily visit the temples at your own pace.<br>
+            <strong>Phnom Penh to Sihanoukville:</strong> A scenic drive to the coast.<br>
+            <strong>Kampot to Kep:</strong> Enjoy the beautiful coastal views and fresh seafood.
+        </p>
+        <p class="main-point">5. Buses:</p>
+        <p class="transport">For longer distances between cities or to popular tourist destinations like Sihanoukville or Kampot, buses are a common option. There are both local and tourist-class buses, with varying levels of comfort.</p>
+        <img src="https://www.khmertimeskh.com/wp-content/uploads/2018/04/6-top-bus.jpg" alt="" class="transport-img">
+        <h4 class="transport">Overview of Bus Travel</h4>
+        <p class="transport">Buses are a popular and affordable mode of transportation for both locals and tourists, connecting major cities and tourist destinations across Cambodia.</p>
+        <h4 class="transport">Types of Buses</h4>
+        <p class="transport">
+            <strong>Public Buses:</strong> Cost-effective options for traveling between cities.<br>
+            <strong>Tourist Buses:</strong> More comfortable with amenities like air conditioning and Wi-Fi, often catering specifically to travelers.
+        </p>
+        <h4 class="transport">Booking Tickets</h4>
+        <p class="transport">Tickets can be purchased at bus stations, online, or through travel agencies. It's advisable to book in advance during peak tourist seasons.</p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">Prices vary based on distance and bus type, typically ranging from $5 to $20 for intercity travel.</p>
+        <h4 class="transport">Popular Routes</h4>
+        <p class="transport">
+            <strong>Phnom Penh to Siem Reap:</strong> A common route to visit Angkor Wat.<br>
+            <strong>Phnom Penh to Sihanoukville:</strong> Ideal for reaching the beach.<br>
+            <strong>Siem Reap to Battambang:</strong> Explore Cambodia's countryside.
+        </p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Arrive Early:</strong> Get to the bus station ahead of time to avoid any last-minute issues.<br>
+            <strong>Keep Valuables Secure:</strong> Always keep your belongings close and secure during your journey.
+        </p>
+        <p class="main-point">6. Boats:</p>
+        <p class="transport">Cambodia's waterways are used for transportation in certain regions. For example, boats are commonly used to travel along the Tonle Sap Lake or the Mekong River, offering scenic views and access to remote areas.</p>
+        <img src="https://www.buvasea.com/images/slider/Kohrongsamloem.jpg" alt="" class="transport-img">
+        <h4 class="transport">Overview of Boat Travel</h4>
+        <p class="transport">Boats are an essential mode of transportation in Cambodia, especially for reaching islands, floating villages, and remote areas along the rivers.</p>
+        <h4 class="transport">Types of Boat Services</h4>
+        <p class="transport">
+            <strong>Ferries:</strong> Regularly operate between cities and islands, providing essential connections.<br>
+            <strong>Chartered Boats:</strong> Available for private hire for tours or special occasions.
+        </p>
+        <h4 class="transport">Popular Routes</h4>
+        <p class="transport">
+            <strong>Phnom Penh to Siem Reap:</strong> A scenic boat ride on the Tonle Sap River.<br>
+            <strong>Siem Reap to Lake Tonle Sap:</strong> Explore floating villages and experience local culture.<br>
+            <strong>Coastal Islands:</strong> Boats to islands like Koh Rong and Koh Rong Samloem for beautiful beaches and relaxation.
+        </p>
+        <h4 class="transport">Booking Options</h4>
+        <p class="transport">Tickets can be purchased at boat docks, through local travel agencies, or online for some services. It's advisable to book in advance during peak travel seasons.</p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">Prices vary depending on the route and type of service, typically ranging from $10 to $30 for popular routes.</p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Wear a Life Jacket:</strong> Always wear a life jacket when on board.<br>
+            <strong>Be Cautious with Valuables:</strong> Keep your belongings secure and avoid bringing too much on board.
+        </p>
+        <p class="main-point">7. Domestic Flights</p>
+        <p class="transport">For those with limited time, flying between major cities like Phnom Penh and Siem Reap can be a quick option. Several airlines offer domestic flights within Cambodia.</p>
+        <img src="https://angkorfocus.com/userfiles/TICKET-cambodia-domestic-flights.jpg" alt="" class="transport-img">
+        <h4 class="transport">Overview of Domestic Flights</h4>
+        <p class="transport">Domestic flights are a convenient way to travel quickly between major cities and tourist destinations in Cambodia, especially for longer distances.</p>
+        <h4 class="transport">Airlines Operating in Cambodia</h4>
+        <p class="transport">
+            <strong>Cambodia Angkor Air:</strong> The national flag carrier offering flights to various domestic locations.<br>
+            <strong>Sky Angkor Airlines:</strong> Another option for domestic travel with competitive pricing and routes.
+        </p>
+        <h4 class="transport">Popular Domestic Routes</h4>
+        <p class="transport">
+            <strong>Phnom Penh to Siem Reap:</strong> A quick flight to reach the Angkor temples.<br>
+            <strong>Phnom Penh to Sihanoukville:</strong> Ideal for beachgoers wanting to skip the long drive.<br>
+            <strong>Siem Reap to Battambang:</strong> Connects two popular tourist destinations efficiently.
+        </p>
+        <h4 class="transport">Booking Tickets</h4>
+        <p class="transport">Tickets can be booked through airline websites, travel agencies, or online travel platforms. It’s advisable to book in advance to secure better rates.</p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">Prices for domestic flights generally range from $50 to $150, depending on the route and how far in advance you book.</p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Arrive Early:</strong> Make sure to arrive at the airport at least an hour before your flight.<br>
+            <strong>Check Luggage Restrictions:</strong> Be aware of weight limits and additional fees for extra luggage.
+        </p>
+        <p class="main-point">8. Shared Taxis:</p>
+        <p class="transport">In some areas, shared taxis are a cost-effective option for travel between towns or cities.</p>
+        <img class="transport-img" src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/09/c1/13/2f.jpg" alt="">
+        <h4 class="transport">Overview of Shared Taxis</h4>
+        <p class="transport">Shared taxis are a popular and economical way to travel between cities in Cambodia. They typically carry multiple passengers and operate on set routes.</p>
+        <h4 class="transport">How Shared Taxis Work</h4>
+        <p class="transport">
+            Shared taxis leave once they are full, making them a faster option compared to buses. Passengers can book a seat at taxi stands or through local travel agencies.
+        </p>
+        <h4 class="transport">Popular Routes</h4>
+        <p class="transport">
+            <strong>Phnom Penh to Siem Reap:</strong> A frequent route popular with tourists.<br>
+            <strong>Phnom Penh to Sihanoukville:</strong> Ideal for beachgoers looking to reach the coast quickly.<br>
+            <strong>Siem Reap to Battambang:</strong> Connects two major tourist destinations efficiently.
+        </p>
+        <h4 class="transport">Costs</h4>
+        <p class="transport">Fares vary based on distance and route, generally ranging from $10 to $25 per person, making them a cost-effective option for travelers.</p>
+        <h4 class="transport">Booking Options</h4>
+        <p class="transport">Seats can be reserved at taxi stands or through local agencies. It’s recommended to confirm prices and departure times before booking.</p>
+        <h4 class="transport">Safety Tips</h4>
+        <p class="transport">
+            <strong>Travel with Reputable Services:</strong> Choose established companies with good reviews.<br>
+            <strong>Keep Valuables Secure:</strong> Always keep an eye on your belongings during the journey.
+        </p>
+</div>   
+
+<!-- for footer   -->
+
+     <footer class="footer_container">
+        <div class="container_footer">
+            <div class="about-us-line1">
+                <h3>Team info</h3>
+                <p class="p-footer">We are from group project. We are here for sharing knowledge about cambodia to all over the world as you can see.   
+                        We made up this group in order to spread the world what we have. <span style="color: hsl(231, 100%, 50%); cursor: pointer;">We have the same destination </span>
+                </p>
+            
+            </div>
+            <div class="Natural-line1">
+                <h3>Pages</h3>
+                <p class="p-footer">
+                    We extend a warm invitation to all visitors from around the world. Our mission is to provide you with comprehensive information, tips, and guides to make your journey through Cambodia unforgettable.
+                </p>
+                
+            </div>
+  
+            <div class="Natural-line1">
+                <h3>Destination</h3>
+                <p class="p-footer">This website was designed and developed by [Your Name/Company], dedicated to providing an immersive and informative experience for travelers exploring the beauty of Cambodia. For inquiries or more information.</p>
+            </div>
+
+
+          <div class="Natural-line1">
+              <h3>Support Us</h3>
+              <p class="p_support">you can suport us, actually we are approval the Ad on our website. if you are interest us please join us  <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
+              <p style="margin-left: 10px;"> <i class="fa fa-phone" aria-hidden="true"></i>  +855 : 0974303668</p>
+              <p style="margin-left: 10px;"> <i class="fa fa-telegram" aria-hidden="true"></i>  @T-Team</p>
+          </div>
+      </div>
+
+      <div class="icon_information">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100088314306741&mibextid=ZbWKwL" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="mailto:natophorn@gmail.com" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/BXWEzjGr" ><i class="fa fa-podcast" aria-hidden="true"></i></i></a>
+        </div>
+       
+    </div>
+
+  </footer>
+  
+  <script>
+    let slideIndex = 0;
+ showSlides();
+ 
+ function showSlides() {
+     let i;
+     let slides = document.getElementsByClassName("fade");
+     for (i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";  
+     }
+     slideIndex++;
+     if (slideIndex > slides.length) {slideIndex = 1}    
+     slides[slideIndex-1].style.display = "block";  
+     setTimeout(showSlides, 5000); 
+ }
+
+   </script>
+</body>
+</html>

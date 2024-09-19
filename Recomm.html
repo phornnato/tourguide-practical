@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations Places </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+   <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+           
+        }
+        /* set up :default font battambang  */
+        .header{
+            text-align: center; 
+            font-size: 40px;
+            font-family: "Moul", serif;
+            font-weight: 400;
+            font-style: normal;
+            text-shadow: 0px 4px 15px hsla(240, 100%, 50%, 0.352);
+        }
+        .battambang{
+            font-family: "Battambang", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .description{
+            font-size: 20px;
+            font-family: "Battambang", system-ui;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* Background image styling */
+        .background-image {
+            height: 100vh;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .slideback {
+            background-size: cover;
+            background-attachment: fixed;
+            /* Fixes the background image */
+            background-position: center;
+            height: 100vh;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .fadeback {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 4s;
+            animation-name: fade;
+            animation-duration: 4s;
+            transition: all 5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .7
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .7
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* Title overlay on the image */
+        .background-image .title {
+            position: absolute;
+            top: 80%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            font-size: 60px;
+            color: white;
+            font-family: "Rowdies", sans-serif;
+            font-weight: 700px;
+            font-style: normal;
+        }
+
+        .background-image .title p {
+            color: rgb(232, 222, 222);
+            text-shadow: 2px 5px 20px;
+            margin-bottom: 50px;
+        }
+
+
+        /* Navigation bar */
+        .navbar {
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+          .navbar {
+                flex-direction:column;
+            
+                text-align: center;
+                
+             }
+    }
+    @media (max-width: 768px) {
+    .slider-container .main-image {
+        height: 200px;
+    }
+}
+@media (max-width: 768px) {
+    .container-map {
+        flex-direction: column;
+        padding: 10px;
+    }
+}
+@media (max-width: 768px) {
+    .background-image .title {
+        font-size: 60px; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        padding: 10px; 
+        text-align: center; 
+    }
+
+}
+
+.logomenu{
+    width: 70px;
+    cursor: pointer;
+}
+.navbar a {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(113, 106, 106);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+
+  font-size: 25px;
+  border: none;
+  outline: none;
+  color: rgb(113, 106, 106);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgba(33, 115, 255, 0.905);
+  transition: 0.6s;
+  color:white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #e6e1e1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  transition: 0.6s;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #8d8d9386;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+        .title_p{
+          font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+
+        }
+        .footer_container{
+            background-color: rgba(0, 0, 0, 0.042);
+            color: rgb(0, 0, 0);
+            height: 300px;
+        }
+        .container_footer {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-inline:15%;
+            
+}
+.about-us-line1 h3, .Natural-line1 h3 {
+    color: rgb(5, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+
+.about-us-line1 a, .Natural-line1 a {
+    display: block;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.about-us-line1 a:hover, .Natural-line1 a:hover {
+    color: #d900007d; 
+
+}
+@media (max-width: 768px) {
+    .container_footer {
+        flex-direction: column;
+        padding-inline: 20px; 
+        text-align: center;
+    }
+}
+.Natural-line1 .p_support, .icon-support  {
+    max-width: 200px;
+    margin-bottom: 15px;
+    padding: 8px;
+    color: rgb(6, 5, 5);
+    margin-bottom: 15px;
+    padding: 8px;
+}
+.p-footer{
+    max-width: 220px;
+    margin-left: 10px;
+}
+.footer_container {
+    background-color: rgba(0, 0, 0, 0.042);
+    color: rgb(0, 0, 0);
+    height: 300px;
+    position: relative;
+}
+
+.icon_information {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    position: absolute;
+    
+    bottom: 2px; 
+    left: 0;
+    right: 0;
+    opacity: 1; 
+    visibility: visible;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(255, 255, 255); 
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.795);
+}
+
+/* for main content  */
+
+.main_container{
+    padding: 15px 10%;
+    background-color: #dbf7a626;
+}
+.main_p{
+          font-size: 18px;
+          line-height: 1.6;
+          color: #666;
+        }
+
+/* for the whole thing to do   */
+
+
+.logo {
+    width: 40px; 
+    height: 40px;
+    margin-right: 10px;
+    background-color: #2BE0B3; /* Green background like the TripAdvisor style */
+    border-radius: 50%;
+}
+.search-bar {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    padding: 10px;
+    width: 400px;
+    background-color: white;
+   float: right;
+}
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    border-radius: 50px;
+    padding: 10px;
+    color: #999;
+    box-sizing: border-box;
+}
+.search-bar input::placeholder {
+    color: #999;
+}
+
+.search-bar .search-icon {
+    font-size: 1.2em;
+    margin-left: 10px;
+    color: #999;
+}
+
+.search-bar input:focus + .search-icon {
+    color: black; 
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.container-first {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border: 10px solid #2BE0B3; 
+    display: block;
+    
+}
+
+.text-section {
+    max-width: 500px;
+}
+
+.text-section h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.text-section p {
+    font-size: 1em;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+.text-section a {
+    color: #000;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.text-section a:hover {
+    color: #2BE0B3; 
+}
+.thing{
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400px;
+  font-style:unset;
+}
+
+/* for card recomendation */
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 38px;
+    flex-wrap: wrap; 
+    max-width: 1200px; 
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    width: 28.3%; 
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    position: relative; 
+    overflow: hidden;
+}
+
+.image-slider {
+    position: relative;
+    height: 300px; 
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+.image-slider img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    display: none;
+    border-radius: 8px;
+}
+.image-slider img:hover{
+    opacity: .9;
+}
+
+.image-slider img.active {
+    display: block;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10; 
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Love icon styling */
+.love-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10; 
+}
+
+.love-icon i {
+    color: red;
+}
+
+.card-content {
+    margin-top: 20px; 
+}
+
+.card-content h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 1em;
+    color: #666;
+}
+
+.experience-link {
+    color: #0066c0;
+    text-decoration: none;
+}
+
+.experience-link:hover {
+    text-decoration: underline;
+}
+/* for map  */
+.container-map{
+    display: flex;
+    gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.map {
+    width: 800px;
+    height: 400px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.coordinates, .distances {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.coordinates h3, .distances h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.coordinates .p-map, .distances .p-map {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Background image with title -->
+  
+    <div class="background-image">
+         <!-- fill in the blank  -->
+        <div class="slideback fadeback" style="background-image: url('https://rac-app.com/tour/public/_img/k01024_06.jpg');"></div>
+        <div class="slideback fadeback" style="background-image: url('https://4.bp.blogspot.com/-j4WjHI0paH0/XYBF3Lc7P5I/AAAAAAAAcrI/xxJ9ZaRHPSEIhSUzbHj2Oi2P_Tmb48wiACNcBGAsYHQ/s1600/23319531_1619076551465003_731821046423219359_n.jpg');"></div>
+        <div class="slideback fadeback" style="background-image: url('https://phkaslapartner.com/wp-content/uploads/2023/06/image_2023-06-20_14-31-48-edited-1024x576.jpg');"></div>
+        <div class="slideback fadeback" style="background-image: url('https://www.popular.com.kh/wp-content/uploads/2022/08/photo_2022-05-11_14-57-07.jpg');"></div>
+        <div class="slideback fadeback" style="background-image: url('https://3.bp.blogspot.com/-X08gfT2-6qw/W8leEdgO1SI/AAAAAAAANTo/JwKnadvjeHgr4VQ1f9ecC5za9kG1mtAOgCLcBGAs/s1600/43475143_2207380609543298_2432945587016957952_n.jpg');"></div>
+        <div class="slideback fadeback" style="background-image: url('https://huunghivietnamcampuchia.thoidai.com.vn/stores/news_dataimages/ducanh/032023/30/14/budha-3520230330144526.4821640.jpg');"></div>
+        <div class="title">Recommendations Places
+            <p class="title_p">We feel free for Asking and Suggestion </p>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- logo  -->
+        <img src="logo.png" class="logomenu" alt="logo"/>
+        <a href="index.html" >Home</a>
+         <!-- recommendations place  -->
+          <a href="Recomm.html" style=" background-color: rgba(33, 115, 255, 0.905); color: white;"> Recommendations Places</a>
+
+        <!-- for services  -->
+
+        <div class="dropdown">
+          <div class="dropbtn" >Services</div>
+          <div class="dropdown-content">
+            <a href="guide.html">Guide</a>
+           <a href="guesthouse.html"> Gesthouse</a>
+           <a href="transportation.html"> Transportations</a>
+           <a href="food.html"> Foods</a>
+          </div>
+        </div>
+        <!-- for about and contact  -->
+        <a href="contact.html">Contact</a>
+        <a href="AboutUs.html">About Us</a>
+      </div>
+    
+    
+    <!-- code main content here -->
+    <br><br><br><br>
+<h1 class="header">សូមស្វាគមន៏មកកាន់ប្រទេសកម្ពុជា</h1>
+<br><br><br>
+<div class="main_container">
+    <br><br>
+    <div class="container-first">
+        <div class="image-section">
+            <img src="https://i.vimeocdn.com/video/1008535193-854c09f5171170d73b5eb6c7199c832f21925525c2a7e3d184c47786dd3f0907-d_750x421.875?q=60" alt="Thing to do">
+        </div>
+        <div class="text-section">
+            <h2 class="thing" style="font-size: 50px;">Things to Do in Cambodia</h2>
+            <p>
+                Check out must-see sights and activities: 
+                <a href="#">Angkor Wat</a>, 
+                <a href="#">Tuol Sleng Genocide Museum</a>, 
+                <a href="#">Sacred & Religious Sites</a>, 
+                <a href="#">Ancient Ruins</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <img src="logo.png" alt="Tripadvisor Logo" class="logo">
+        <input type="text" placeholder="Search">
+        <span class="search-icon">&#128269;</span> 
+        
+    </div>
+    <hr style="margin-top: 200px;">
+    <h1>Recommended for you</h1>
+    <p>Tours and activities tailored to your interests.</p>
+    <div class="card-container">
+        <!-- Card 1 -->
+
+        <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(2)">&#10094;</button>
+                <img src="https://asset.cambodia.gov.kh/tourism/2023/11/angkor-wat-temple-siem-reap-1-scaled.jpg" alt="Image 2" class="slide card4-slide">
+                <img src="https://sbm.news/api/files/images/pexels-allphoto-bangkok-5279020-8f19.jpg" alt="Image 1" class="slide active card4-slide">
+                <img src="https://lh3.googleusercontent.com/proxy/EP40XzCkupyc28ryBe_X35mzDJCQE8FKM9xnnHe4WIehCJakHYdj5nyl0bxaN3lzIRyNsdFWgOhJ_0-H280SgDgvLBYeHs-d-SnD4IdAo7f5mGzt9jQcYA" alt="Image 2" class="slide card4-slide">
+                
+                <button class="next" onclick="nextSlide(4)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">ប្រាសាទអង្គរវត្ត</h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                </p>
+                <p><strong>Admission tickets free</strong></p>
+                <p class="description">ប្រាសាទ អង្គរវត្ត ឬ នគរវត្ត (អង់គ្លេស: Angkor Wat) or (Nokor Wat) ជាប្រាសាទ ដែលធំបំផុត នៅក្នុងប្រទេសកម្ពុជា ដែលមានមាឌដ្ឋានលើផ្ទៃដីទំហំ ១៦២,៦ ហិចតា ដោយស្មើនឹង (1,626,000 m2) ។ រចនាសម្ព័ននៃសំណង់ប្រាសាទត្រូវ បានចាត់ទុកជាស្ថាបត្យកម្មដ៏កំពូល នៃ អច្ឆរិយៈវត្ថុរបស់ពិភពលោក ដែលត្រូវបានសាងសង់ឡើងក្នុងស.វទី១២ ដោយព្រះបាទ សូរ្យវរ្ម័នទី២ ដែលជាព្រះមហាក្សត្រ នាសម័យកាល ចក្រភពខ្មែរ ប្រាសាទនេះសាងសង់ ដើម្បីឧទ្ទិសឱ្យ ព្រហ្មញ្ញសាសនា នៃលទ្ធិជំនឿលើ ព្រះវិស្ណុ ដូចនេះហើយ ប្រាសាទអង្គរវត្តត្រូវបានគេសន្មតថា ជាប្រាសាទសាសនា ដែលធំបំផុតនៅលើពិភពលោក ដែលជាប់ក្នុងកំណត់ត្រាពិភពលោក "ហ្គីនណេស" (Guinness World Records) ក្នុងអំឡុងឆ្នាំ ១៩៨៥ ។</p>
+            </div>
+        </div>
+        
+        <!-- Repeat card 1 structure for Card 2 and Card 3 -->
+        
+        <!-- Card 2 -->
+        
+        <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(1)">&#10094;</button>
+                <img src="https://s9.kh1.co/__image/w=650,h=430,q=100/51/510e84f5a39ee296f705ed39a5de9036d81f891d.png" alt="Image 1" class="slide active card1-slide">
+                <img src="https://kohsantepheap.tv/wp-content/uploads/2020/10/1K6A3943.jpg" alt="Image 2" class="slide card1-slide">
+                <img src="https://s9.kh1.co/__image/w=617,h=324,q=100/81/8161344582518749b4b3daad8737382bbe875b25.jpg" alt="Image 3" class="slide card1-slide">
+                <button class="next" onclick="nextSlide(1)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">កៀនស្វាយក្រៅ</h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-star-half-o" aria-hidden="true"></i> -->
+                </p>
+                <p><strong>Admission tickets free</strong></p>
+                <p class="description">ជារមណីយដ្ឋានមួយដែលស្ថិតនៅក្នុងស្រុកកៀនស្វាយ មានចម្ងាយផ្លូវពីទីក្រុងភ្នំពេញ ១៩គីឡូម៉ែត្រ។ នៅទីនោះមានរមណីយដ្ឋានកម្សាន្តមួយកន្លែងដែលគេស្គាល់ថាកៀនស្វាយក្រៅ។ នៅទីនោះជារមណីយដ្ឋានធម្មជាតិដែលមានម្លប់ដើមឈើធំៗដែលជាម្លប់ត្រជាក់ត្រឈឹងត្រឈៃ និងមានដំណាំចំការ ដំណាំហូបផ្លែរបស់កសិករជាច្រើនទៀតដែលពឹងផ្អែកលើប្រភពទឹកទន្លេខ្ទប បែកចេញពីទន្លេមេគង្គ។ </p>
+            </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(3)">&#10094;</button>
+                <img src="https://media.sabay.com/media/TECH-KK/SOVATH/Nov-2020-01/5fa10feb45618_1604390880.png" alt="Image 1" class="slide active card3-slide">
+                <img src="https://i.ytimg.com/vi/1QCdgWn4Cmc/maxresdefault.jpg" alt="Image 2" class="slide card3-slide">
+                <img src="https://cambodiapropertyreport.com//storage/posts/May2020/89.jpg" alt="Image 2" class="slide card3-slide">
+                
+                <button class="next" onclick="nextSlide(3)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">ភ្នំឪរ៉ាល់</h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-star-half-o" aria-hidden="true"></i> -->
+                </p>
+                <p><strong>Free to Vistit</strong></p>
+                <p class="description">ភ្នំឱរ៉ាល់ គឺជាកំពូលភ្នំខ្ពស់ជាងគេនៅកម្ពុជា មានកំពស់ ១,៨១៣ ម៉ែត្រ ស្ថិតនៅក្នុងស្រុកឱរ៉ាល់ ខេត្តកំពង់ស្ពឺនៅតាមផ្នែកខាងកើតនៃជួរភ្នំក្រវាញ ដើម្បីការពារជីវៈចម្រុះនៃភ្នំដែនជម្រកសត្វព្រៃ។ មុននឹងដើរទៅដល់កំពូលភ្នំឱរ៉ាល់ត្រូវឆ្លងកាត់កូនភ្នំចំនួន១៧ ដែលមានទេសភាពដ៏ស្រស់ត្រកាលនៃភ្នំពោរពេញដោយរុក្ខជាតិព័ណ៌បៃតង។ដើម្បីទៅភ្នំឱរ៉ាល់ ភ្ញៀវទេសចរអាចធ្វើដំណើរចេញពីភ្នំពេញ តាមផ្លូវជាតិលេខ៥ រួចបត់ឆ្វេងតាមផ្លូវតាមផ្លូវលេខ ១៣៦ ឆ្ពោះទៅកាន់សហគមន៍ភ្នំឱរ៉ាល់ ដែលមានចម្ងាយប្រមាណ ១២៨គីឡូម៉ែត្រ។ដំណើរផ្សងព្រេងកាត់ព្រៃភ្នំ ដើម្បីឡើងដល់កំពូលភ្នំដែលខ្ពស់បំផុតនៅកម្ពុជា ដោយចំណាយរយៈពេលត្រឹមតែមួយថ្ងៃ ជាបទពិសោធន៍ថ្មីរបស់ក្រុមអ្នកចូលចិត្តធ្វើដំណើរផ្សងព្រេង។</p>
+            </div>
+        </div>
+
+           <!-- Card 4 -->
+           <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(4)">&#10094;</button>
+                <img src="https://demo.cambodia.gov.kh/wp-content/uploads/2021/01/Kandal-%E1%9E%9A%E1%9E%98%E1%9E%8E%E1%9E%B8%E1%9E%99%E1%9E%8A%E1%9F%92%E1%9E%8B%E1%9E%B6%E1%9E%93%E1%9E%97%E1%9F%92%E1%9E%93%E1%9F%86%E1%9E%96%E1%9F%92%E1%9E%9A%E1%9F%87%E1%9E%9A%E1%9E%B6%E1%9E%87%E1%9E%91%E1%9F%92%E1%9E%9A%E1%9E%96%E1%9F%92%E1%9E%99-%E1%9E%97%E1%9F%92%E1%9E%93%E1%9F%86%E1%9E%A7%E1%9E%8F%E1%9F%92%E1%9E%8F%E1%9E%BB%E1%9E%84%E1%9F%92%E1%9E%823.jpg" alt="Image 1" class="slide active card2-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Udong_0001.jpg/800px-Udong_0001.jpg" alt="Image 2" class="slide card2-slide">
+                <img src="https://cdn.sabay.com/cdn/media.sabay.com/media/sabay-news/Social-International/June(2)/June-(14)/62f483a9614b3_1660191600_small.jpg" alt="Image 3" class="slide card2-slide">
+               
+                <button class="next" onclick="nextSlide(2)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">ភ្នំព្រះរាជទ្រព្យ</h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                </p>
+                <p><strong>Admission tickets free</strong></p>
+                <p class="description">នៅភ្នំឧត្តុង ឬភ្នំព្រះរាជទ្រព្យ និងភ្នំអដ្ឋរស្សនេះ មានកំពូល៥ គឺកំពូលចេតិយ ទន្ទឹមនឹងកំពូលត្រៃត្រឹង្គ កំពូលភ្នំចេតិយកំពូលបួន ព្រះអង្គចូលបរិនិព្វាន្ត និងកំពូលភ្នំអរិយកាប្បស ជាពិសេសចេតិយតម្កល់ព្រះសេរីរឹកធាតុព្រះសម្មាសម្ពុទ្ធយ៉ាងស្អាត ហើយព្រមទាំងមានខ្យល់បរិសុទ្ធបក់មករំភើយៗយ៉ាងត្រជាក់កាយា ហើយក៏ជាកន្លែងលម្ហែអារម្មណ៍មួយដែលបានបម្រើដល់ការកម្សាន្ត របស់អ្នកទេសចរជាតិ និងអន្តរជាតិ ជិតឆ្ងាយមកទស្សនាកម្សាន្តរៀងរាល់ថ្ងៃបាត់អស់ទុក្ខកង្វល់ ជាច្រើនឆ្នាំមកហើយ ហើយបច្ចុប្បន្នភ្នំឧត្តុងនេះ បានផ្តល់ផលពីវិស័យទេសចរណ៍មួយនេះ ដល់ប្រជាពលរដ្ឋនៅក្នុងមូលដ្ឋាននេះជាច្រើនផងដែរ។</p>
+            </div>
+        </div>
+
+         <!-- Card 5 -->
+         <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(5)">&#10094;</button>
+                <img src="https://rac-app.com/tour/public/_img/k07035_05.jpg" alt="Image 1" class="slide active card5-slide">
+                <img src="https://refile.tnaot.com/image/2019/09/02/c62536bfb2e34c659dac347d4d3d043b.jpg?x-oss-process=image/watermark,image_RS5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yMA" alt="Image 2" class="slide card5-slide">
+                <img src="https://kohsantepheapdaily.com.kh/wp-content/images/2019/06/eccbc87e4b5ce2fe28308fd9f2a7baf3-201.jpg" alt="Image 2" class="slide card5-slide">
+                <button class="next" onclick="nextSlide(5)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">សហគមន៍ទេសចរណ៍ អណ្ដូងឬស្សី</h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                </p>
+                <p><strong>Admission tickets free</strong></p>
+                <p class="description">សហគមន៍ទេសចរណ៍ អណ្តូងឬស្សី ស្ថិតក្នុងភូមិអណ្តូងឬស្សី ឃុំស្រែថ្មី ស្រុករលាប្អៀរ ខេត្តកំពង់ឆ្នាំង ដែលទទួលបានចំណូលពីការលក់ផលិតផលទេសចរណ៍ និងការផ្ដល់សេវាកម្មផ្សេងៗទៀត។ ទីនេះជាតំបន់ដែលប្រជាពលរដ្ឋមានមុខរបរប្រពៃណីតាំងពីបរមបុរាណមកផ្នែកស្មូនឆ្នាំងដែលវត្ថុធាតុដើមគឺដីឥដ្ឋនៃភ្នំក្រាំងមាសជាប់ភូមិនោះហើយ។ ក្រៅពីរបរខាងលើក៏មានរបរបន្ទាប់បន្សំដទៃទៀត ដូចជាឡើងត្នោត តម្បាញជាដើម។ ទេសចរបរទេសច្រើនទិញវត្ថុសិល្បៈផលិតពីដីឥដ្ឋ ជាពិសេសនៅភូមិនេះ មានឡដុតមួយជាជំនួយជប៉ុន ដែលបង្រៀនពីការដុតភាជន៍ឱ្យមានស្រទាប់រលោង។</p>
+            </div>
+        </div>
+
+         <!-- Card 6 -->
+         <div class="card">
+            <div class="image-slider">
+                <div class="love-icon" onclick="toggleLike(this)">
+                    <i class="fa fa-heart-o"></i>
+                </div>
+                <button class="prev" onclick="prevSlide(6)">&#10094;</button>
+                <img src="https://1.bp.blogspot.com/-4Adq2-GLaVw/YEsZ25HENHI/AAAAAAAAH6E/bUAeWTJnW9AOJk-Vg_qZPWZuKpz_CZp-wCLcBGAsYHQ/s1000/2327e09cec1a432baf5bde24b5b1c675.jpg" alt="Image 1" class="slide active card6-slide">
+                <img src="https://scontent.fpnh8-2.fna.fbcdn.net/v/t1.6435-9/93798778_155312415959919_269068443985117184_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeG5-YKbsd1ZIXVtia8LNTrMGYAXLhS-ctUZgBcuFL5y1SMmfoA5t2EEiZAJ1nCrQ0sy-geARq9X7FTMURBOkZDg&_nc_ohc=ku7351mQuuYQ7kNvgGMmnlk&_nc_ht=scontent.fpnh8-2.fna&oh=00_AYBlbIpfsJSQtHUeCNx3XGDerHHd6JrN3-eOoQQXvUm09w&oe=67129B41" alt="Image 2" class="slide card6-slide">
+                <img src="https://tourismkhmer.files.wordpress.com/2019/09/2-1.jpg?w=816&h=612&crop=1" alt="Image 3" class="slide card6-slide">
+                <button class="next" onclick="nextSlide(6)">&#10095;</button>
+            </div>
+            <div class="card-content">
+                <h3 class="battambang">ធ្នស់តាព្រំ </h3>
+                <p>Speciality Trips</p>
+                <p style="color: hsla(60, 100%, 50%, 0.718);"><i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-star-half-o" aria-hidden="true"></i> -->
+                </p>
+                <p><strong>Admission tickets free</strong></p>
+                <p class="description">ធ្នស់តាព្រំ ជារមណីយដ្ឋានធម្មជាតិថ្មីមួយទៀត ដែលខេត្តកំពង់ធំ ក៏ដូចជាក្រសួងទេសចរណ៍ ទើបសម្រេចបង្កើតជាផ្លូវការនាដើម ឆ្នាំ ២០១៨ នេះ ។ ធ្នស់តាព្រំ មានទីតាំងស្ថិតនៅក្នុងបរិវេណ វត្តធ្នស់តាព្រំ ក្នុង ភូមិស្វាយ ឃុំស្រើង ស្រុកប្រាសាទសំបូរ ខេត្តកំពង់ធំ ។ នៅទីនោះ ជាតំបន់មួយមានសក្តានុពលសម្រាប់ទាក់គាត់យល់ថាវត្តភ្នំប្រធាតុ គឺជាវត្តុមួយ ស័ក្តិ សិទ្ធិណាស់ «បន់អីបានហ្នឹង»! អ្នកខ្លះមកបន់រកស៉ីមានបាន ខ្លះមកបន់សុំកូន ខ្លះមកបន់សុំលក់ដីដាច់ និងខ្លះទៀតមកបន់សុំឱ្យអ្នកជំពាក់លុយសងជាដើម ហើយអ្នកដែលបន់ទាំង នោះទទួលបានផល និងតែងតែមកលាបំណន់វិញផងដែរ គឺមកជារៀងរាល់ថ្ងៃសៅរ៍ អាទិត្យ ជាថ្ងៃឈប់សម្រាក។</p>
+            </div>
+        </div>
+
+    </div>
+    <h1>Here is the map</h1>
+
+    <div class="container-map">
+        <div id="map" class="map"></div>
+            <div class="info">
+                <div class="coordinates">
+                    <h3>Coordinates</h3>
+                    <p class="p-map">12.680126, 104.757149</p>
+                </div>
+                <div class="distances">
+                    <h3>Distances</h3>
+                    <p class="p-map">Phnom Pehn   : 190km</p>
+                    <p class="p-map">Siem Reap    : 160km</p>
+                    <p class="p-map">Sihanoukville: 110km</p>
+                    <p class="p-map">Kampot city  : 36km</p>
+                    <p class="p-map">Kep  : 58km</p>
+                </div>
+            </div>
+        </div>
+
+</div>  
+
+
+<!-- for footer   -->
+
+     <footer class="footer_container">
+        <div class="container_footer">
+            <div class="about-us-line1">
+                <h3>Team info</h3>
+                <p class="p-footer">We are from group project. We are here for sharing knowledge about cambodia to all over the world as you can see.   
+                        We made up this group in order to spread the world what we have. <span style="color: hsl(231, 100%, 50%); cursor: pointer;">We have the same destination </span>
+                </p>
+            
+            </div>
+            <div class="Natural-line1">
+                <h3>Pages</h3>
+                <p class="p-footer">
+                    We extend a warm invitation to all visitors from around the world. Our mission is to provide you with comprehensive information, tips, and guides to make your journey through Cambodia unforgettable.
+                </p>
+                
+            </div>
+  
+            <div class="Natural-line1">
+                <h3>Destination</h3>
+                <p class="p-footer">This website was designed and developed by [Your Name/Company], dedicated to providing an immersive and informative experience for travelers exploring the beauty of Cambodia. For inquiries or more information.</p>
+            </div>
+
+
+          <div class="Natural-line1">
+              <h3>Support Us</h3>
+              <p class="p_support">you can suport us, actually we are approval the Ad on our website. if you are interest us please join us  <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
+              <p style="margin-left: 10px;"> <i class="fa fa-phone" aria-hidden="true"></i>  +855 : 0974303668</p>
+              <p style="margin-left: 10px;"> <i class="fa fa-telegram" aria-hidden="true"></i>  @T-Team</p>
+          </div>
+      </div>
+
+      <div class="icon_information">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100088314306741&mibextid=ZbWKwL" ><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="mailto:natophorn@gmail.com" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            <a href="https://discord.gg/BXWEzjGr" ><i class="fa fa-podcast" aria-hidden="true"></i></i></a>
+        </div>
+    </div>
+</footer>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    let slideIndex = 0;
+ showSlides();
+ 
+ function showSlides() {
+     let i;
+     let slides = document.getElementsByClassName("fadeback");
+     for (i = 0; i < slides.length; i++) {
+         slides[i].style.display = "none";  
+     }
+     slideIndex++;
+     if (slideIndex > slides.length) {slideIndex = 1}    
+     slides[slideIndex-1].style.display = "block";  
+     setTimeout(showSlides, 5000); 
+ }
+
+ function nextSlide(cardNumber) {
+    showSlides1(cardNumber, 1);
+}
+
+function prevSlide(cardNumber) {
+    showSlides1(cardNumber, -1);
+}
+
+function showSlides1(cardNumber, n) {
+    let slides = document.getElementsByClassName(`card${cardNumber}-slide`);
+    let activeSlideIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+    
+    slides[activeSlideIndex].classList.remove('active');
+    
+    let nextSlideIndex = activeSlideIndex + n;
+    if (nextSlideIndex >= slides.length) nextSlideIndex = 0;
+    if (nextSlideIndex < 0) nextSlideIndex = slides.length - 1;
+    
+    slides[nextSlideIndex].classList.add('active');
+}
+
+function toggleLike(element) {
+    let icon = element.querySelector(".fa");
+    if (icon.classList.contains("fa-heart-o")) {
+        icon.classList.remove("fa-heart-o");
+        icon.classList.add("fa-heart");
+    } else {
+        icon.classList.remove("fa-heart");
+        icon.classList.add("fa-heart-o");
+    }
+}
+// for searching 
+
+// Function to filter cards based on search input
+function searchCard() {
+
+    const searchQuery = document.querySelector('.search-bar input').value.toLowerCase();
+    
+    // Get all cards
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        
+        const cardTitle = card.querySelector('.battambang').textContent.toLowerCase();
+        
+      
+        if (cardTitle.includes(searchQuery)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+document.querySelector('.search-bar input').addEventListener('input', searchCard);
+
+var map = L.map('map').setView([12.680126, 104.757149], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'About our G3 Team'
+}).addTo(map);
+var marker = L.marker([12.680126, 104.757149]).addTo(map);
+marker.bindPopup("<b>Cambodia </b><br>Welcome to Cambodia the kingdom of wonder").openPopup();
+
+   </script>
+</body>
+</html>
